@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Download Time Calculator</title>
+  </head>
+  <body>
+    <h1>Download Time Calculator</h1>
+    
+    <label for="fileSize">File Size (in MB):</label>
+    <input type="number" id="fileSize" name="fileSize" step="0.01" required><br><br>
+    
+    <label for="downloadSpeed">Download Speed (in KB/s):</label>
+    <input type="number" id="downloadSpeed" name="downloadSpeed" required><br><br>
+    
+    <button onclick="calculateDownloadTime()">Calculate Download Time</button><br><br>
+    
+    <p id="downloadTime"></p>
+    
+    <script>
+      function calculateDownloadTime() {
+        var fileSizeMB = document.getElementById("fileSize").value;
+        var downloadSpeedKB = document.getElementById("downloadSpeed").value;
+        
+        // Convert download speed to MB/s
+        var downloadSpeedMB = downloadSpeedKB / 1024;
+        
+        // Calculate download time in seconds
+        var downloadTimeSeconds = fileSizeMB / downloadSpeedMB;
+        
+        // Convert download time to minutes and seconds
+        var downloadTimeMinutes = Math.floor(downloadTimeSeconds / 60);
+        var downloadTimeSecondsRemaining = Math.round(downloadTimeSeconds % 60);
+        
+        // Display the download time
+        var downloadTimeDisplay = "Estimated download time: " + downloadTimeMinutes + " minutes and " + downloadTimeSecondsRemaining + " seconds";
+        document.getElementById("downloadTime").textContent = downloadTimeDisplay;
+      }
+    </script>
+  </body>
+</html>
